@@ -87,6 +87,7 @@ async function checkIfNDependExists(
   runid,
   octokit,
   NDependBaseline,
+  artifactNameBase,
   baseLineDir
 ) {
   const artifacts = await octokit.request(
@@ -99,7 +100,7 @@ async function checkIfNDependExists(
   );
   for (const artifactKey in artifacts.data.artifacts) {
     const artifact = artifacts.data.artifacts[artifactKey];
-    if (artifact.name == "ndepend" && !artifact.expired) {
+    if (artifact.name == artifactNameBase && !artifact.expired) {
       var artifactid = artifact.id;
       core.info("artifact found:" + artifactid);
 
@@ -278,6 +279,7 @@ async function run() {
             run.data.id,
             octokit,
             NDependBaseline,
+            artifactNameBase,
             baseLineDir
           );
         } catch (error) {
@@ -334,6 +336,7 @@ async function run() {
                 runid,
                 octokit,
                 NDependBaseline,
+                artifactNameBase,
                 baseLineDir
               );
             } else if (baseline.lastIndexOf("_recent") > 0) {
@@ -344,6 +347,7 @@ async function run() {
                   runid,
                   octokit,
                   NDependBaseline,
+                  artifactNameBase,
                   baseLineDir
                 );
             } else if (run.run_number.toString() == baseline) {
@@ -353,6 +357,7 @@ async function run() {
                 runid,
                 octokit,
                 NDependBaseline,
+                artifactNameBase,
                 baseLineDir
               );
             }
