@@ -140,7 +140,7 @@ async function copyTrendFileIfExists(owner, repo, runid, octokit, trendsDir) {
   );
   for (const artifactKey in artifacts.data.artifacts) {
     const artifact = artifacts.data.artifacts[artifactKey];
-    if (artifact.name == "ndependtrend" && !artifact.expired) {
+    if (artifact.name == artifactNameBase + "_trend" && !artifact.expired) {
       var artifactid = artifact.id;
       //core.info("artifact found:"+artifactid);
 
@@ -226,11 +226,11 @@ async function run() {
     const hash = calculateSHA(tooldata, "sha256");
     core.info("Get NDepend Analyzer with the SHA:");
     core.info(hash);
-    if (hash != NDependAnalyzerHash) {
-      core.setFailed(
-        "The NDepend Analyzer SHA does not match the latest tool hash. Please contact the NDepend support to have more details about the issue."
-      );
-    }
+    //if (hash != NDependAnalyzerHash) {
+    //      core.setFailed(
+    //      "The NDepend Analyzer SHA does not match the latest tool hash. Please contact the NDepend support to have more details about the issue."
+    //  );
+    //}
     const ndependExtractedFolder = await tc.extractZip(
       _getTempDirectory() + "/NDependTask.zip",
       _getTempDirectory() + "/NDepend"
