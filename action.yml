@@ -4,27 +4,31 @@ branding:
   icon: 'check-circle'
   color: 'blue'
 inputs:
-  license:  
+  license:
     description: 'NDepend license file'
     required: true
     default: ''
-  baseline:  
+  artifactname:
+    description: 'Name for the artifact that is created'
+    required: false
+    default: 'ndepend'
+  baseline:
     description: 'NDepend baseline'
     required: false
     default: ''
-  solution:  
+  solution:
     description: '.sln file'
     required: false
     default: ''
-  stopIfQGFailed:  
+  stopIfQGFailed:
     description: 'Stop if at least one quality gate failed'
     required: false
     default: false
-  customconfig:  
+  customconfig:
     description: 'Custom NDepend configuration file'
     required: false
     default: ''
-  coveragefolder: 
+  coveragefolder:
     description: 'Coverage Directory'
     required: false
     default: ''
